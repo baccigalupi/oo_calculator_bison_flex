@@ -457,13 +457,12 @@ int yy_flex_debug = 0;
 char *yytext;
 #line 1 "lex.l"
 #line 2 "lex.l"
+  #include <stdio.h>
+  #include "lib/literal_value.h"
+  #include "parse.tab.h"
 
-#include <stdio.h>
-#include "lib/base_value.h"
-#include "parse.tab.h"
-
-BaseValue *yylval;
-#line 467 "lex.yy.c"
+  LiteralValue *yylval;
+#line 466 "lex.yy.c"
 
 #define INITIAL 0
 
@@ -645,10 +644,10 @@ YY_DECL
 	register char *yy_cp, *yy_bp;
 	register int yy_act;
     
-#line 12 "lex.l"
+#line 11 "lex.l"
 
 
-#line 652 "lex.yy.c"
+#line 651 "lex.yy.c"
 
 	if ( !(yy_init) )
 		{
@@ -733,67 +732,67 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 14 "lex.l"
+#line 13 "lex.l"
 { return T_ADD; }
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 15 "lex.l"
+#line 14 "lex.l"
 { return T_SUBTRACT; }
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 16 "lex.l"
+#line 15 "lex.l"
 { return T_MULTIPLY; }
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 17 "lex.l"
+#line 16 "lex.l"
 { return T_DIVIDE; }
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 18 "lex.l"
+#line 17 "lex.l"
 { return T_EQUAL; }
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 19 "lex.l"
+#line 18 "lex.l"
 {
-          yylval = BaseValue_create(T_NUMBER, yytext);
-          return T_NUMBER;
+          yylval = LiteralValue_create_from_str(T_INTEGER, yytext);
+          return T_INTEGER;
         }
 	YY_BREAK
 case 7:
 /* rule 7 can match eol */
 YY_RULE_SETUP
-#line 23 "lex.l"
+#line 22 "lex.l"
 { return T_EOL; }
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 24 "lex.l"
+#line 23 "lex.l"
 {
-          yylval = BaseValue_create(T_VARIABLE, yytext);
+          yylval = LiteralValue_create_from_str(T_VARIABLE, yytext);
           return T_VARIABLE;
         }
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 28 "lex.l"
+#line 27 "lex.l"
 {}
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 29 "lex.l"
+#line 28 "lex.l"
 { printf("UNKNOWN TOKEN: %s\n", yytext); }
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 31 "lex.l"
+#line 30 "lex.l"
 ECHO;
 	YY_BREAK
-#line 797 "lex.yy.c"
+#line 796 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1790,7 +1789,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 31 "lex.l"
+#line 30 "lex.l"
 
 
 

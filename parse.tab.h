@@ -46,19 +46,21 @@ extern int yydebug;
   enum yytokentype
   {
     T_NUMBER = 258,
-    T_VARIABLE = 259,
-    T_EQUAL = 260,
-    T_ADD = 261,
-    T_SUBTRACT = 262,
-    T_MULTIPLY = 263,
-    T_DIVIDE = 264,
-    T_EOL = 265
+    T_INTEGER = 259,
+    T_FLOAT = 260,
+    T_VARIABLE = 261,
+    T_EQUAL = 262,
+    T_ADD = 263,
+    T_SUBTRACT = 264,
+    T_MULTIPLY = 265,
+    T_DIVIDE = 266,
+    T_EOL = 267
   };
 #endif
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
-typedef  BaseValue*  YYSTYPE;
+typedef  LiteralValue*  YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define YYSTYPE_IS_DECLARED 1
 #endif

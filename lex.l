@@ -1,10 +1,9 @@
 %{
+  #include <stdio.h>
+  #include "lib/literal_value.h"
+  #include "parse.tab.h"
 
-#include <stdio.h>
-#include "lib/base_value.h"
-#include "parse.tab.h"
-
-BaseValue *yylval;
+  LiteralValue *yylval;
 %}
 
 %option noyywrap
@@ -17,12 +16,12 @@ BaseValue *yylval;
 "/"     { return T_DIVIDE; }
 "="     { return T_EQUAL; }
 [0-9]+  {
-          yylval = BaseValue_create(T_NUMBER, yytext);
-          return T_NUMBER;
+          yylval = LiteralValue_create_from_str(T_INTEGER, yytext);
+          return T_INTEGER;
         }
 \n      { return T_EOL; }
 [a-z]   {
-          yylval = BaseValue_create(T_VARIABLE, yytext);
+          yylval = LiteralValue_create_from_str(T_VARIABLE, yytext);
           return T_VARIABLE;
         }
 [ \t]   {}
