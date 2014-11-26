@@ -71,11 +71,12 @@
   void yyerror(char const *s) { fprintf(stderr, "%s\n", s); }
 
   #include "lib/literal_value.h"
+  #include "lib/classes.h"
 
   #define YYERROR_VERBOSE 1
 
 
-#line 79 "parse.tab.c" /* yacc.c:339  */
+#line 80 "parse.tab.c" /* yacc.c:339  */
 
 # ifndef YY_NULLPTR
 #  if defined __cplusplus && 201103L <= __cplusplus
@@ -139,7 +140,7 @@ int yyparse (void);
 
 /* Copy the second part of user declarations.  */
 
-#line 143 "parse.tab.c" /* yacc.c:358  */
+#line 144 "parse.tab.c" /* yacc.c:358  */
 
 #ifdef short
 # undef short
@@ -437,8 +438,8 @@ static const yytype_uint8 yytranslate[] =
   /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    28,    28,    30,    34,    35,    36,    40,    41,    42,
-      46,    47
+       0,    29,    29,    31,    35,    36,    37,    41,    42,    43,
+      47,    48
 };
 #endif
 
@@ -1213,37 +1214,37 @@ yyreduce:
   switch (yyn)
     {
         case 3:
-#line 30 "parse.y" /* yacc.c:1661  */
+#line 31 "parse.y" /* yacc.c:1661  */
     { print_literal_value((yyvsp[-1])); }
-#line 1219 "parse.tab.c" /* yacc.c:1661  */
+#line 1220 "parse.tab.c" /* yacc.c:1661  */
     break;
 
   case 5:
-#line 35 "parse.y" /* yacc.c:1661  */
-    { (yyval) = literal_add((yyvsp[-2]), (yyvsp[0])); }
-#line 1225 "parse.tab.c" /* yacc.c:1661  */
+#line 36 "parse.y" /* yacc.c:1661  */
+    { (yyval) = operator_call((yyvsp[-2]), T_ADD, (yyvsp[0])); }
+#line 1226 "parse.tab.c" /* yacc.c:1661  */
     break;
 
   case 6:
-#line 36 "parse.y" /* yacc.c:1661  */
-    { (yyval) = literal_subtract((yyvsp[-2]), (yyvsp[0])); }
-#line 1231 "parse.tab.c" /* yacc.c:1661  */
+#line 37 "parse.y" /* yacc.c:1661  */
+    { (yyval) = operator_call((yyvsp[-2]), T_SUBTRACT, (yyvsp[0])); }
+#line 1232 "parse.tab.c" /* yacc.c:1661  */
     break;
 
   case 8:
-#line 41 "parse.y" /* yacc.c:1661  */
-    { (yyval) = literal_multiply((yyvsp[-2]), (yyvsp[0])); }
-#line 1237 "parse.tab.c" /* yacc.c:1661  */
+#line 42 "parse.y" /* yacc.c:1661  */
+    { (yyval) = operator_call((yyvsp[-2]), T_MULTIPLY, (yyvsp[0])); }
+#line 1238 "parse.tab.c" /* yacc.c:1661  */
     break;
 
   case 9:
-#line 42 "parse.y" /* yacc.c:1661  */
-    { (yyval) = literal_divide((yyvsp[-2]), (yyvsp[0])); }
-#line 1243 "parse.tab.c" /* yacc.c:1661  */
+#line 43 "parse.y" /* yacc.c:1661  */
+    { (yyval) = operator_call((yyvsp[-2]), T_DIVIDE, (yyvsp[0])); }
+#line 1244 "parse.tab.c" /* yacc.c:1661  */
     break;
 
 
-#line 1247 "parse.tab.c" /* yacc.c:1661  */
+#line 1248 "parse.tab.c" /* yacc.c:1661  */
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires
@@ -1471,5 +1472,5 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 54 "parse.y" /* yacc.c:1906  */
+#line 55 "parse.y" /* yacc.c:1906  */
 

@@ -6,6 +6,7 @@
   void yyerror(char const *s) { fprintf(stderr, "%s\n", s); }
 
   #include "lib/literal_value.h"
+  #include "lib/classes.h"
 
   #define YYERROR_VERBOSE 1
 
@@ -32,14 +33,14 @@ calculation
 
 expression
   : factor
-  | expression T_ADD factor       { $$ = literal_add($1, $3); }
-  | expression T_SUBTRACT factor  { $$ = literal_subtract($1, $3); }
+  | expression T_ADD factor       { $$ = operator_call($1, T_ADD, $3); }
+  | expression T_SUBTRACT factor  { $$ = operator_call($1, T_SUBTRACT, $3); }
   ;
 
 factor
   : term
-  | factor T_MULTIPLY term        { $$ = literal_multiply($1, $3); }
-  | factor T_DIVIDE term          { $$ = literal_divide($1, $3); }
+  | factor T_MULTIPLY term        { $$ = operator_call($1, T_MULTIPLY, $3); }
+  | factor T_DIVIDE term          { $$ = operator_call($1, T_DIVIDE, $3); }
   ;
 
 term

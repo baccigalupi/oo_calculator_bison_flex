@@ -40,14 +40,7 @@ LiteralValue *integer_multiply_unknown(LiteralValue *a, LiteralValue *b);
 LiteralValue *integer_multiply(LiteralValue *a, LiteralValue *b);
 LiteralValue *float_multiply(LiteralValue *a, LiteralValue *b);
 
-LiteralValue *integer_divide_unknown(LiteralValue *a, LiteralValue *b);
-LiteralValue *integer_divide(LiteralValue *a, LiteralValue *b);
 LiteralValue *float_divide(LiteralValue *a, LiteralValue *b);
-
-LiteralValue *literal_add(LiteralValue *a, LiteralValue *b);
-LiteralValue *literal_subtract(LiteralValue *a, LiteralValue *b);
-LiteralValue *literal_multiply(LiteralValue *a, LiteralValue *b);
-LiteralValue *literal_divide(LiteralValue *a, LiteralValue *b);
 
 void          print_literal_value(LiteralValue *a);
 
