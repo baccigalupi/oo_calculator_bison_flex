@@ -17,10 +17,6 @@ typedef enum {
 // frees a pointer and sets it to null
 #define pfree(P)        ((P) != NULL) ? (free(P), ((P) = NULL)) : (NULL)
 
-// VARIANT ACCESSORS -------------
-#define object_type(O)       ((O)->type)
-#define object_value(O)      ((O)->value)
-
 // EXPANDABLE OBJECT METHODS
 static inline int Expandable_capacity(int capacity) {
   int exponent = 1;

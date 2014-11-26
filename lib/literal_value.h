@@ -28,6 +28,22 @@ Float         *Float_create(float f);
 Float         *Float_create_from_str(const char *str);
 Integer       *Integer_create_from_str(const char *str);
 
+LiteralValue *integer_add_unknown(LiteralValue *a, LiteralValue *b);
+LiteralValue *integer_add(LiteralValue *a, LiteralValue *b);
+LiteralValue *float_add(LiteralValue *a, LiteralValue *b);
+
+LiteralValue *integer_subtract_unknown(LiteralValue *a, LiteralValue *b);
+LiteralValue *integer_subtract(LiteralValue *a, LiteralValue *b);
+LiteralValue *float_subtract(LiteralValue *a, LiteralValue *b);
+
+LiteralValue *integer_multiply_unknown(LiteralValue *a, LiteralValue *b);
+LiteralValue *integer_multiply(LiteralValue *a, LiteralValue *b);
+LiteralValue *float_multiply(LiteralValue *a, LiteralValue *b);
+
+LiteralValue *integer_divide_unknown(LiteralValue *a, LiteralValue *b);
+LiteralValue *integer_divide(LiteralValue *a, LiteralValue *b);
+LiteralValue *float_divide(LiteralValue *a, LiteralValue *b);
+
 LiteralValue *literal_add(LiteralValue *a, LiteralValue *b);
 LiteralValue *literal_subtract(LiteralValue *a, LiteralValue *b);
 LiteralValue *literal_multiply(LiteralValue *a, LiteralValue *b);
