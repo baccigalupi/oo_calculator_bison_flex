@@ -381,16 +381,16 @@ union yyalloc
 /* YYFINAL -- State number of the termination state.  */
 #define YYFINAL  2
 /* YYLAST -- Last index in YYTABLE.  */
-#define YYLAST   12
+#define YYLAST   14
 
 /* YYNTOKENS -- Number of terminals.  */
 #define YYNTOKENS  13
 /* YYNNTS -- Number of nonterminals.  */
 #define YYNNTS  5
 /* YYNRULES -- Number of rules.  */
-#define YYNRULES  10
+#define YYNRULES  11
 /* YYNSTATES -- Number of states.  */
-#define YYNSTATES  16
+#define YYNSTATES  17
 
 /* YYTRANSLATE[YYX] -- Symbol number corresponding to YYX as returned
    by yylex, with out-of-bounds checking.  */
@@ -438,7 +438,7 @@ static const yytype_uint8 yytranslate[] =
 static const yytype_uint8 yyrline[] =
 {
        0,    28,    28,    30,    34,    35,    36,    40,    41,    42,
-      46
+      46,    47
 };
 #endif
 
@@ -463,10 +463,10 @@ static const yytype_uint16 yytoknum[] =
 };
 # endif
 
-#define YYPACT_NINF -9
+#define YYPACT_NINF -7
 
 #define yypact_value_is_default(Yystate) \
-  (!!((Yystate) == (-9)))
+  (!!((Yystate) == (-7)))
 
 #define YYTABLE_NINF -1
 
@@ -477,8 +477,8 @@ static const yytype_uint16 yytoknum[] =
      STATE-NUM.  */
 static const yytype_int8 yypact[] =
 {
-      -9,     2,    -9,    -9,    -8,    -4,    -9,     9,     9,    -9,
-       9,     9,    -4,    -4,    -9,    -9
+      -7,     0,    -7,    -7,    -7,    -6,    -3,    -7,     5,     5,
+      -7,     5,     5,    -3,    -3,    -7,    -7
 };
 
   /* YYDEFACT[STATE-NUM] -- Default reduction number in state STATE-NUM.
@@ -486,20 +486,20 @@ static const yytype_int8 yypact[] =
      means the default is an error.  */
 static const yytype_uint8 yydefact[] =
 {
-       2,     0,     1,    10,     0,     4,     7,     0,     0,     3,
-       0,     0,     5,     6,     8,     9
+       2,     0,     1,    10,    11,     0,     4,     7,     0,     0,
+       3,     0,     0,     5,     6,     8,     9
 };
 
   /* YYPGOTO[NTERM-NUM].  */
 static const yytype_int8 yypgoto[] =
 {
-      -9,    -9,    -9,     1,     0
+      -7,    -7,    -7,     3,     2
 };
 
   /* YYDEFGOTO[NTERM-NUM].  */
 static const yytype_int8 yydefgoto[] =
 {
-      -1,     1,     4,     5,     6
+      -1,     1,     5,     6,     7
 };
 
   /* YYTABLE[YYPACT[STATE-NUM]] -- What to do in state STATE-NUM.  If
@@ -507,36 +507,36 @@ static const yytype_int8 yydefgoto[] =
      number is the opposite.  If YYTABLE_NINF, syntax error.  */
 static const yytype_uint8 yytable[] =
 {
-       7,     8,     2,     0,     9,     3,    10,    11,    12,    13,
-      14,    15,     3
+       2,     0,     8,     9,     3,     4,    10,    11,    12,     3,
+       4,    13,    14,    15,    16
 };
 
 static const yytype_int8 yycheck[] =
 {
-       8,     9,     0,    -1,    12,     3,    10,    11,     7,     8,
-      10,    11,     3
+       0,    -1,     8,     9,     4,     5,    12,    10,    11,     4,
+       5,     8,     9,    11,    12
 };
 
   /* YYSTOS[STATE-NUM] -- The (internal number of the) accessing
      symbol of state STATE-NUM.  */
 static const yytype_uint8 yystos[] =
 {
-       0,    14,     0,     3,    15,    16,    17,     8,     9,    12,
-      10,    11,    16,    16,    17,    17
+       0,    14,     0,     4,     5,    15,    16,    17,     8,     9,
+      12,    10,    11,    16,    16,    17,    17
 };
 
   /* YYR1[YYN] -- Symbol number of symbol that rule YYN derives.  */
 static const yytype_uint8 yyr1[] =
 {
        0,    13,    14,    14,    15,    15,    15,    16,    16,    16,
-      17
+      17,    17
 };
 
   /* YYR2[YYN] -- Number of symbols on the right hand side of rule YYN.  */
 static const yytype_uint8 yyr2[] =
 {
        0,     2,     0,     3,     1,     3,     3,     1,     3,     3,
-       1
+       1,     1
 };
 
 
@@ -1214,7 +1214,7 @@ yyreduce:
     {
         case 3:
 #line 30 "parse.y" /* yacc.c:1661  */
-    { printf("= %d\n", literal_value((yyvsp[-1]))); }
+    { print_literal_value((yyvsp[-1])); }
 #line 1219 "parse.tab.c" /* yacc.c:1661  */
     break;
 
@@ -1471,5 +1471,5 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 53 "parse.y" /* yacc.c:1906  */
+#line 54 "parse.y" /* yacc.c:1906  */
 

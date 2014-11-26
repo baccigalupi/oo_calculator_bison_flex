@@ -25,11 +25,29 @@ error:
   return NULL;
 }
 
-Float *Float_create_from_str(const char *str) {
+Float *Float_create(float f) {
   Float *number = calloc(1, sizeof(Float));
   check_mem(number);
 
-  number->value = atof(str);
+  number->value = f;
+  return number;
+error:
+  return NULL;
+}
+
+Float *Float_create_from_str(const char *str) {
+  Float *number = Float_create(atof(str));
+  check_mem(number);
+  return number;
+error:
+  return NULL;
+}
+
+Integer  *Integer_create(int i) {
+  Integer *number = calloc(1, sizeof(Integer));
+  check_mem(number);
+
+  number->value = i;
   return number;
 error:
   return NULL;
@@ -45,7 +63,91 @@ error:
   return NULL;
 }
 
-// LiteralValue *literal_add(LiteralValue *a, LiteralValue *b);
-// LiteralValue *literal_subtract(LiteralValue *a, LiteralValue *b);
-// LiteralValue *literal_multiply(LiteralValue *a, LiteralValue *b);
-// LiteralValue *literal_divide(LiteralValue *a, LiteralValue *b);
+LiteralValue *literal_add(LiteralValue *a, LiteralValue *b) {
+  LiteralValue *literal = calloc(1, sizeof(Float));
+  check_mem(literal);
+
+  if (literal_value_type(a) == T_INTEGER && literal_value_type(b) == T_INTEGER) {
+    literal->type = T_INTEGER;
+    Integer *value = Integer_create(literal_value(a) + literal_value(b));
+    check_mem(value);
+    literal->value = value;
+  } else {
+    literal->type = T_FLOAT;
+    Float *value = Float_create(literal_value(a) + literal_value(b));
+    check_mem(value);
+    literal->value = value;
+  }
+
+  return literal;
+error:
+  return NULL;
+}
+
+LiteralValue *literal_subtract(LiteralValue *a, LiteralValue *b) {
+  LiteralValue *literal = calloc(1, sizeof(Float));
+  check_mem(literal);
+
+  if (literal_value_type(a) == T_INTEGER && literal_value_type(b) == T_INTEGER) {
+    literal->type = T_INTEGER;
+    Integer *value = Integer_create(literal_value(a) - literal_value(b));
+    check_mem(value);
+    literal->value = value;
+  } else {
+    literal->type = T_FLOAT;
+    Float *value = Float_create(literal_value(a) - literal_value(b));
+    check_mem(value);
+    literal->value = value;
+  }
+
+  return literal;
+  error:
+  return NULL;
+}
+
+LiteralValue *literal_multiply(LiteralValue *a, LiteralValue *b) {
+  LiteralValue *literal = calloc(1, sizeof(Float));
+  check_mem(literal);
+
+  if (literal_value_type(a) == T_INTEGER && literal_value_type(b) == T_INTEGER) {
+    literal->type = T_INTEGER;
+    Integer *value = Integer_create(literal_value(a) * literal_value(b));
+    check_mem(value);
+    literal->value = value;
+  } else {
+    literal->type = T_FLOAT;
+    Float *value = Float_create(literal_value(a) * literal_value(b));
+    check_mem(value);
+    literal->value = value;
+  }
+
+  return literal;
+  error:
+  return NULL;
+}
+
+LiteralValue *literal_divide(LiteralValue *a, LiteralValue *b) {
+  LiteralValue *literal = calloc(1, sizeof(Float));
+  check_mem(literal);
+
+  literal->type = T_FLOAT;
+  Float *value = Float_create(literal_value(a) * literal_value(b));
+  check_mem(value);
+  literal->value = value;
+
+  return literal;
+  error:
+  return NULL;
+}
+
+void print_literal_value(LiteralValue *a) {
+  if (literal_value_type(a) == T_INTEGER) {
+    Integer *i = literal_value_value(a);
+    int value = i->value;
+    printf("= %d\n", value);
+  } else {
+    Float *f = literal_value_value(a);
+    float value = f->value;
+    printf("= %f\n", value);
+  }
+}

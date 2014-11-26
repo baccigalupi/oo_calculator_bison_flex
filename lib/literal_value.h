@@ -24,6 +24,7 @@ typedef struct Float {
                                 )
 
 LiteralValue  *LiteralValue_create_from_str(int type, const char *str);
+Float         *Float_create(float f);
 Float         *Float_create_from_str(const char *str);
 Integer       *Integer_create_from_str(const char *str);
 
@@ -31,5 +32,7 @@ LiteralValue *literal_add(LiteralValue *a, LiteralValue *b);
 LiteralValue *literal_subtract(LiteralValue *a, LiteralValue *b);
 LiteralValue *literal_multiply(LiteralValue *a, LiteralValue *b);
 LiteralValue *literal_divide(LiteralValue *a, LiteralValue *b);
+
+void          print_literal_value(LiteralValue *a);
 
 #endif

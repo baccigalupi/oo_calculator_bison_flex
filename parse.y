@@ -27,7 +27,7 @@
 
 calculation
   :
-  | calculation expression T_EOL { printf("= %d\n", literal_value($2)); }
+  | calculation expression T_EOL { print_literal_value($2); }
   ;
 
 expression
@@ -43,7 +43,8 @@ factor
   ;
 
 term
-  : T_NUMBER
+  : T_INTEGER
+  | T_FLOAT
   ;
 
 // assignment:
