@@ -1,20 +1,7 @@
-#ifndef __valuables
-
-typedef enum {
-  NUMBER,
-  STRING
-} BaseValueType;
-
-typedef struct BaseValue {
-  int BaseValueType;
-  void *value;
-} BaseValue;
-
-#endif
-
 #ifndef __bricks_number
 #define __bricks_number
 
+// TODO: change to max int size for machine and max float size
 #define INT     int
 #define A_TO_I  atoi
 #define FLOAT   float

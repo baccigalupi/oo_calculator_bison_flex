@@ -1,9 +1,10 @@
 %{
 
 #include <stdio.h>
+#include "lib/base_value.h"
 #include "parse.tab.h"
 
-// char *yylval;
+BaseValue *yylval;
 %}
 
 %option noyywrap
@@ -16,12 +17,12 @@
 "/"     { return T_DIVIDE; }
 "="     { return T_EQUAL; }
 [0-9]+  {
-          yylval = atoi(yytext);
+          yylval = BaseValue_create(T_NUMBER, yytext);
           return T_NUMBER;
         }
 \n      { return T_EOL; }
 [a-z]   {
-          // yylval = yytext;
+          yylval = BaseValue_create(T_VARIABLE, yytext);
           return T_VARIABLE;
         }
 [ \t]   {}

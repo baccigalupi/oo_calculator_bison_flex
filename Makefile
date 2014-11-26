@@ -1,3 +1,6 @@
+LIB_SOURCES=$(wildcard lib/**/*.c lib/*.c)
+LANG_SOURCES=lex.yy.c parse.tab.c main.c
+
 BISON=/usr/local/Cellar/bison/3.0.2/bin/bison
 
 calculator: bison flex all
@@ -9,7 +12,7 @@ flex:
 	flex lex.l
 
 all:
-	gcc -o calculator main.c parse.tab.c lex.yy.c -ll
+	$(CC) -o calculator $(LIB_SOURCES) $(LANG_SOURCES) -ll
 
 clean:
 	rm -f parse.tab.*

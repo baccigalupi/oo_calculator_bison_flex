@@ -5,7 +5,8 @@
 extern int yylex(void);
 void yyerror(char const *s) { fprintf(stderr, "%s\n", s); }
 
-#include "lib/valuables.h"
+#include "lib/number.h"
+#include "lib/base_value.h"
 
 #define YYERROR_VERBOSE 1
 
@@ -14,8 +15,7 @@ void yyerror(char const *s) { fprintf(stderr, "%s\n", s); }
 /* tokens */
 
 // %define api.token.prefix { TOKEN_ }
-// %define api.value.type { BaseValue } // string:string/atom/id/class_id, number, regex (two strings, value and modifier)
-%define api.value.type { int }
+%define api.value.type { BaseValue* }
 
 
 %token T_NUMBER
@@ -28,19 +28,19 @@ void yyerror(char const *s) { fprintf(stderr, "%s\n", s); }
 
 calculation
   :
-  | calculation expression T_EOL { BaseValue; printf("= %d\n", $2); }
+  | calculation expression T_EOL { printf("= %d\n", base_value_number($2)); }
   ;
 
 expression
   : factor
-  | expression T_ADD factor       { $$ = $1 + $3; }
-  | expression T_SUBTRACT factor  { $$ = $1 - $3; }
+  | expression T_ADD factor       { $$ = base_value_add($1, $3); }
+  | expression T_SUBTRACT factor  { $$ = base_value_subtract($1, $3); }
   ;
 
 factor
   : term
-  | factor T_MULTIPLY term        { $$ = $1 * $3; }
-  | factor T_DIVIDE term          { $$ = $1 / $3; }
+  | factor T_MULTIPLY term        { $$ = base_value_multiply($1, $3); }
+  | factor T_DIVIDE term          { $$ = base_value_divide($1, $3); }
   ;
 
 term

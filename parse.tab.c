@@ -70,12 +70,13 @@
 extern int yylex(void);
 void yyerror(char const *s) { fprintf(stderr, "%s\n", s); }
 
-#include "lib/valuables.h"
+#include "lib/number.h"
+#include "lib/base_value.h"
 
 #define YYERROR_VERBOSE 1
 
 
-#line 79 "parse.tab.c" /* yacc.c:339  */
+#line 80 "parse.tab.c" /* yacc.c:339  */
 
 # ifndef YY_NULLPTR
 #  if defined __cplusplus && 201103L <= __cplusplus
@@ -123,7 +124,7 @@ extern int yydebug;
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
-typedef  int  YYSTYPE;
+typedef  BaseValue*  YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define YYSTYPE_IS_DECLARED 1
 #endif
@@ -137,7 +138,7 @@ int yyparse (void);
 
 /* Copy the second part of user declarations.  */
 
-#line 141 "parse.tab.c" /* yacc.c:358  */
+#line 142 "parse.tab.c" /* yacc.c:358  */
 
 #ifdef short
 # undef short
@@ -1212,36 +1213,36 @@ yyreduce:
     {
         case 3:
 #line 31 "parse.y" /* yacc.c:1661  */
-    { BaseValue; printf("= %d\n", (yyvsp[-1])); }
-#line 1217 "parse.tab.c" /* yacc.c:1661  */
+    { printf("= %d\n", base_value_number((yyvsp[-1]))); }
+#line 1218 "parse.tab.c" /* yacc.c:1661  */
     break;
 
   case 5:
 #line 36 "parse.y" /* yacc.c:1661  */
-    { (yyval) = (yyvsp[-2]) + (yyvsp[0]); }
-#line 1223 "parse.tab.c" /* yacc.c:1661  */
+    { (yyval) = base_value_add((yyvsp[-2]), (yyvsp[0])); }
+#line 1224 "parse.tab.c" /* yacc.c:1661  */
     break;
 
   case 6:
 #line 37 "parse.y" /* yacc.c:1661  */
-    { (yyval) = (yyvsp[-2]) - (yyvsp[0]); }
-#line 1229 "parse.tab.c" /* yacc.c:1661  */
+    { (yyval) = base_value_subtract((yyvsp[-2]), (yyvsp[0])); }
+#line 1230 "parse.tab.c" /* yacc.c:1661  */
     break;
 
   case 8:
 #line 42 "parse.y" /* yacc.c:1661  */
-    { (yyval) = (yyvsp[-2]) * (yyvsp[0]); }
-#line 1235 "parse.tab.c" /* yacc.c:1661  */
+    { (yyval) = base_value_multiply((yyvsp[-2]), (yyvsp[0])); }
+#line 1236 "parse.tab.c" /* yacc.c:1661  */
     break;
 
   case 9:
 #line 43 "parse.y" /* yacc.c:1661  */
-    { (yyval) = (yyvsp[-2]) / (yyvsp[0]); }
-#line 1241 "parse.tab.c" /* yacc.c:1661  */
+    { (yyval) = base_value_divide((yyvsp[-2]), (yyvsp[0])); }
+#line 1242 "parse.tab.c" /* yacc.c:1661  */
     break;
 
 
-#line 1245 "parse.tab.c" /* yacc.c:1661  */
+#line 1246 "parse.tab.c" /* yacc.c:1661  */
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires
